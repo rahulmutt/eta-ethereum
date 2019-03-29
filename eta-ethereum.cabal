@@ -1,0 +1,29 @@
+name:                eta-ethereum
+version:             0.1.0.0
+synopsis:            A full node Ethereum client written in Eta
+homepage:            https://github.com/rahulmutt/eta-ethereum
+author:              Rahul Muttineni
+maintainer:          rahulmutt@gmail.com
+category:            Blockchain
+license:             LGPL-3.0-or-later
+license-file:        COPYING.LESSER
+build-type:          Simple
+extra-source-files:  ChangeLog.md
+cabal-version:       1.12
+
+executable evm
+  hs-source-dirs:      cmd/evm
+  main-is:             Main.hs
+  other-modules:       Commands
+                       Commands.Compile
+                       Commands.Disassemble
+                       Commands.Run
+                       Commands.StateTest
+                       Commands.Types
+  build-depends:       base >=4.11 && <4.12
+                     , optparse-applicative
+                     , text
+  default-language:    Haskell2010
+  default-extensions:  OverloadedStrings
+  eta-options: -Wall -Werror
+  
