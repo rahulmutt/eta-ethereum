@@ -26,7 +26,7 @@ import Data.Text (Text)
 import Options.Applicative (Mod, CommandFields)
 
 data Command =
-    CompileCommand { compileFile :: Text 
+    CompileCommand { compileFile :: FilePath 
                    , compileDebug :: Bool }
   | RunCommand { runFile :: Maybe Text
                , runFlags :: RunFlags }

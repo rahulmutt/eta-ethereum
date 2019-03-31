@@ -14,23 +14,16 @@
    You should have received a copy of the GNU General Public License
    along with eta-ethereum. If not, see <http://www.gnu.org/licenses/>. -}
 
-module Main where
+module Commands 
+  ( Command(..)
+  , compileCommand, doCompile
+  , disassembleCommand
+  , runCommand
+  , stateTestCommand )
+where
 
-import Commands
-import Options.Applicative 
-  (execParser, info, hsubparser, progDesc)
-
-main :: IO ()
-main = do
-  res <- execParser cliInfo
-  case res of
-    CompileCommand {} -> error "compile: not implemented"
-    RunCommand {} -> error "run: not implemented"
-    StateTestCommand {} -> error "statetest: not implemented"
-    DisassembleCommand {} -> error "disasm: not implemented"
-  where cliInfo = 
-          info (hsubparser (compileCommand 
-                         <> disassembleCommand 
-                         <> runCommand 
-                         <> stateTestCommand))
-               (progDesc "the evm command line interface")
+import Commands.Compile
+import Commands.Disassemble
+import Commands.Run
+import Commands.StateTest
+import Commands.Types

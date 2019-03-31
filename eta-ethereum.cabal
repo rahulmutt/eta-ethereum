@@ -5,14 +5,14 @@ homepage:            https://github.com/rahulmutt/eta-ethereum
 author:              Rahul Muttineni
 maintainer:          rahulmutt@gmail.com
 category:            Blockchain
-license:             LGPL-3.0-or-later
-license-file:        COPYING.LESSER
+license:             GPL-3.0-or-later
+license-file:        COPYING
 build-type:          Simple
 extra-source-files:  ChangeLog.md
 cabal-version:       1.12
 
 executable evm
-  hs-source-dirs:      cmd/evm
+  hs-source-dirs:      tools/evm
   main-is:             Main.hs
   other-modules:       Commands
                        Commands.Compile
@@ -20,10 +20,12 @@ executable evm
                        Commands.Run
                        Commands.StateTest
                        Commands.Types
-  build-depends:       base >=4.11 && <4.12
+  build-depends:       base >=4.11
+                     , bytestring
+                     , ethereum-core 
                      , optparse-applicative
                      , text
   default-language:    Haskell2010
   default-extensions:  OverloadedStrings
-  eta-options: -Wall -Werror
+  eta-options:         -Wall -Werror
   

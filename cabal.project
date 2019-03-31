@@ -1,1 +1,3 @@
 packages: .
+          ethereum-core
+          ethereum-common

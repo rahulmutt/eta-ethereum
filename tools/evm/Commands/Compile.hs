@@ -14,12 +14,20 @@
    You should have received a copy of the GNU General Public License
    along with eta-ethereum. If not, see <http://www.gnu.org/licenses/>. -}
 
-module Commands.Compile (compileCommand) where
+module Commands.Compile (compileCommand, doCompile) where
 
 import Commands.Types (Command(CompileCommand), CommandSpec)
+
+import Ethereum.ASM.Compiler (compile)
+import Ethereum.ASM.Lexer    (lexASM)
+
 import Options.Applicative 
   (command, info, progDesc, strArgument, metavar, Parser, switch,
    long, help)
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Lazy.Char8 as BLC
+import System.IO (hPutStrLn, stderr)
+import Control.Monad (when)
 
 compileCommand :: CommandSpec
 compileCommand =
@@ -33,3 +41,14 @@ compileParser =
     <*> switch
       ( long "debug"
      <> help "output full trace logs" )
+
+doCompile :: FilePath -> Bool -> IO () 
+doCompile fp debug = do
+  contents <- BL.readFile fp 
+  case lexASM contents of
+    Left e -> hPutStrLn stderr e
+    Right tokens -> do
+      when debug $ mapM_ print tokens
+      case compile tokens of
+        Left errors  -> mapM_ (hPutStrLn stderr . show) errors
+        Right result -> BLC.putStrLn result
