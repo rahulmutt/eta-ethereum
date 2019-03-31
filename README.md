@@ -1,3 +1,5 @@
+[![Build Status](https://circleci.com/gh/rahulmutt/eta-ethereum.svg?style=shield)](https://circleci.com/gh/rahulmutt/eta-ethereum)
+
 # Eta Ethereum
 
 This is a work-in-progress re-implementation of a full node Ethereum client based on `go-ethereum`.
