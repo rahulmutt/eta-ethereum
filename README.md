@@ -2,7 +2,36 @@
 
 # Eta Ethereum
 
-This is a work-in-progress re-implementation of a full node Ethereum client based on `go-ethereum`.
+This is a work-in-progress implementation of a full node Ethereum client that takes inspiration from the top two Ethereum clients: [go-ethereum](https://github.com/ethereum/go-ethereum) and [parity](https://github.com/paritytech/parity-ethereum).
+
+## Goals
+
+The goal is to eventually be a fully functional, competitive Ethereum implementation and serve as platform for quickly prototyping new ideas for Ethereum 2.0 and beyond using a strongly typed, pure functional language that runs on the JVM.
+
+## Building
+
+### Prerequisites
+
+- JDK 7+
+- Eta v0.8+
+
+### Instructions
+
+You can run the following command to build all the executables and their dependencies:
+
+```
+etlas build all
+```
+
+### Testing
+
+
+You can run the following command to run the tests for all the packages:
+
+```
+etlas test all
+```
+
 
 ## License
 
